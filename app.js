@@ -3,6 +3,7 @@
 (function main() {
 
     let helloPhil = "Hello, Phil!";
+    let helloall = 'lkjasdf'
 
-    console.log(helloPhil);
-})()
+    console.log(helloPhil, helloall);
+})();
