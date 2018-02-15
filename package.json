@@ -1,0 +1,19 @@
+{
+  "name": "viewing-sessions-per-minute",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pdenette/ViewingSessionsPerMinute.git"
+  },
+  "author": "Phil Denette",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/pdenette/ViewingSessionsPerMinute/issues"
+  },
+  "homepage": "https://github.com/pdenette/ViewingSessionsPerMinute#readme"
+}
