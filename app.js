@@ -1,10 +1,32 @@
 "use strict";
 
-(function main() {
-    promptUser();
-})();
+let convict = require('convict');
+
+// Initialize Convict to allow filepath command line parameter
+let config = convict({
+  env: {
+    doc: "The application environment.",
+    format: ["production", "development", "test"],
+    default: "development",
+    env: "NODE_ENV",
+    arg: "env"
+  },
+  logfilepath: {
+    doc: "The PrizmDoc log filepath.",
+    format: "*",
+    default: "",
+    env: "LOG_FILEPATH",
+    arg: "logfilepath"
+  }
+});
+
+// Perform validation
+config.validate({allowed: 'strict'});
+
+//
 
 function readFile() {
+
 
 }
 
@@ -12,18 +34,11 @@ function parseLine() {
 
 }
 
-function promptUser() {
-    let readline = require('readline');
-    let rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout
-    });
-    
-    let answer;
+(function main() {
+    if (config.get("logfilepath") === "") {
+        console.error("No filepath specified.");
+        process.exit(1);
+    }
 
-    rl.question("What do you think of Node.js? ", function(input) {
-        answer = input;
-        rl.close();
-    });
-
-}
+    console.log(config.get("logfilepath"));
+})();
