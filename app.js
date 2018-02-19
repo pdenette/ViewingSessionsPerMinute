@@ -43,13 +43,18 @@ config.validate({ allowed: 'strict' });
 			let line = buf.slice(0, pos);
 			if (RegExp("reqBegin.+?(?=POST).+?ViewingSession\"").test(line)) {
 				let viewingsessiondatetime = JSON.parse(line).time; // do something with the data here!
-				viewingsessiondatetimearray.push(line);
-				console.log(viewingsessiondatetime);
+				viewingsessiondatetimearray.push(viewingsessiondatetime);
 			}
 			buf = buf.slice(pos + 1); // and slice the processed data off the buffer
 		}
 	});
-	stream.on("finish", function () {
+
+	stream.on("end", function () {
 		stream.close();
+		let moment = require("moment")
+		console.log(viewingsessiondatetimearray[0]);
+		console.log(viewingsessiondatetimearray[viewingsessiondatetimearray.length - 1]);
+		let totalminutes = (viewingsessiondatetimearray[viewingsessiondatetimearray.length - 1]) - (viewingsessiondatetimearray[0]);
+		console.log(totalminutes);
 	})
 })();
