@@ -39,13 +39,22 @@ config.validate({ allowed: 'strict' });
 			lines.push(JSON.parse(line).time);
 		}
 	});
-
 	readline.on("close", function () {
-		// console.log(lines.join("\n"));
-		// let moment = require("moment")
-		console.log(lines[0]);
-		console.log(lines[lines.length - 1]);
-		let totalminutes = (lines[lines.length - 1]) - (lines[0]);
-		console.log(totalminutes);
+		let moment = require("moment")
+
+		let logStartDate = lines[0];
+		let logStartDateParsed = moment(logStartDate);
+
+		console.log(logStartDateParsed);
+
+		let logEndDate = lines[lines.length - 1];
+		let logEndDateParsed = moment(logEndDate);
+
+		console.log(logEndDateParsed);
+
+		let DateDifference = moment.duration(logEndDateParsed.diff(logStartDateParsed));
+		let TotalMinutes = Math.floor(DateDifference.asMinutes());
+
+		console.log(lines.length / TotalMinutes);
 	})
 })();
