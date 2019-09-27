@@ -29,20 +29,19 @@ def parseLogFile(logFileDirectory):
                     vsdatearray.append(data['time'])
     totalViewingsessionCount = len(vsdatearray)
     firstPostDate = datetime.strptime(
-        vsdatearray[0].replace('T', ' '),
+        vsdatearray[len(vsdatearray)-1].replace('T', ' '),
         '%Y-%m-%d %H:%M:%S.%fZ'
     )
     lastPostDate = datetime.strptime(
-        vsdatearray[len(vsdatearray)-1].replace('T', ' '),
+        vsdatearray[0].replace('T', ' '),
         '%Y-%m-%d %H:%M:%S.%fZ'
     )
     dateDifferenceInMinutes = ((time.mktime(lastPostDate.timetuple()) -
                                 time.mktime(firstPostDate.timetuple()))/60)
     print("Total Number of Viewing Sessions Created between ",
           firstPostDate, " and ", lastPostDate, " is ", totalViewingsessionCount)
-    print("The number of viewing sessiond per minute calculated is ",
+    print("The number of Viewing Sessions per minute calculated is ",
           totalViewingsessionCount / dateDifferenceInMinutes)
-
 
 
     # this stays at the bottom
